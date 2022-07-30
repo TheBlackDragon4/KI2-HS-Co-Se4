@@ -1,6 +1,6 @@
-package uebung03.untyped.route;
-import uebung03.untyped.Problem;
-import uebung03.untyped.State;
+package ki2.untyped.route;
+import ki2.untyped.Problem;
+import ki2.untyped.State;
 
 import java.util.Objects;
 

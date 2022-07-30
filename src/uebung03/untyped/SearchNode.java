@@ -1,4 +1,4 @@
-package uebung03.untyped;
+package ki2.untyped;
 
 public class SearchNode {
 

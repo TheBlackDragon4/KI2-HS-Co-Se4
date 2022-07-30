@@ -1,6 +1,5 @@
-package uebung03.untyped;
+package ki2.untyped;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -78,39 +77,12 @@ public class SearchAlgorithms {
 
         // TODO: implement
 
-        List<SearchNode> frontier = new ArrayList<>();
-
-        SearchNode start = new SearchNode(null, prob.getInitialState(), null, 0);
-
-        if(prob.isGoalState(start.getState())) {
-            return start;
-        }
-
-        frontier.add(start);
-        while (!frontier.isEmpty()) {
-            SearchNode node = frontier.remove(frontier.size() - 1);
-            System.out.println("Current node: " + node);
-            if(prob.isGoalState(node.getState())){
-                return node;
-            }
-
-            for (SearchNode child : expand(node)){
-                State state = child.getState();
-                if (!node.contains(state)) {
-                    frontier.add(child);
-                }
-            }
-        }
-
-        System.out.println("No solution found");
         return null;
     }
 
     public static SearchNode iterativeDFS(Problem prob) {
 
         // TODO: implement
-
-
 
         return null;
     }

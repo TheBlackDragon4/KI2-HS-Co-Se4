@@ -1,7 +1,7 @@
-package uebung03.untyped.staubsauger;
+package ki2.untyped.staubsauger;
 
-import uebung03.untyped.Problem;
-import uebung03.untyped.State;
+import ki2.untyped.Problem;
+import ki2.untyped.State;
 
 import java.util.Arrays;
 import java.util.Objects;

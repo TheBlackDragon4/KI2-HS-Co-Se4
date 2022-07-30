@@ -1,8 +1,7 @@
-package uebung03.untyped.route;
+package ki2.untyped.route;
 
-import uebung03.untyped.Problem;
-import uebung03.untyped.State;
-import uebung03.untyped.solution.DistanceUtil;
+import ki2.untyped.Problem;
+import ki2.untyped.State;
 
 import java.util.*;
 
@@ -59,7 +58,6 @@ public class GermanyRouteProblem implements Problem {
             Map.entry("Cottbus", new Coordinate(51.766, 14.335)),
             Map.entry("Chemnitz", new Coordinate(50.830, 12.917)),
             Map.entry("Dresden", new Coordinate(51.050, 13.739)),
-            Map.entry("Erfurt", new Coordinate(50.986, 11.022)),
             Map.entry("Erfurt", new Coordinate(50.986, 11.022)),
             Map.entry("Essen", new Coordinate(51.467, 7.017)),
             Map.entry("Frankfurt/Main", new Coordinate(50.117, 8.683)),
@@ -180,9 +178,6 @@ public class GermanyRouteProblem implements Problem {
         double dist = getCost(city1, city2, city2);
         if (Double.isInfinite(dist)) {
             // TODO: Hier Heuristikfunktion anwenden
-            Coordinate coord1 = cityCoords.get(city1);
-            Coordinate coord2 = cityCoords.get(city2);
-            return DistanceUtil.calculateDistanceInKilometer(coord1.lat, coord1.lon, coord2.lat, coord2.lon);
         }
         return dist;
     }
