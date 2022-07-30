@@ -1,44 +1,42 @@
 package uebung02;
 
+import uebung02.untyped.Problem;
+import uebung02.untyped.SearchAlgorithms;
+import uebung02.untyped.SearchNode;
+import uebung02.untyped.staubsauger.StaubsaugerProblem;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 
 public class Uebung02 {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		Problem prob = new StaubsaugerProblem(5, 2);
+        Problem prob = new StaubsaugerProblem(3, 1);
 
-		// Ausgabe aller Informationen für BestFirstSearch
-		System.out.println("BFS: ");
-		// Graphensuche sorgt dafür, dass jeder Knoten wirklich nur einmal besucht wird und nicht öfters
-		SearchNode solutionBFS = SearchAlgorithms.breadthFirstSearch(prob, true);
-		printSolution(solutionBFS);
+        System.out.println("BFS:");
+        SearchNode solutionBFS = SearchAlgorithms.breadthFirstSearch(prob, true);
+        printSolution(solutionBFS);
 
-		System.out.println("\nDFS: ");
-		SearchNode solutionDFS = SearchAlgorithms.depthFirstSearch(prob);
-		printSolution(solutionDFS);
-	}
+        System.out.println("\nDFS:");
+        SearchNode solutionDFS = SearchAlgorithms.depthFirstSearch(prob);
+        printSolution(solutionDFS);
+    }
 
-	public static void printSolution(SearchNode solution) {
-		// Erzeugung einer neuen Liste für die Nodes
-		List<SearchNode> nodes = new ArrayList<>();
-		SearchNode curr = solution;
+    public static void printSolution(SearchNode solution) {
+        List<SearchNode> nodes = new ArrayList<>();
+        SearchNode curr = solution;
+        while(curr != null ) {
+            nodes.add(curr);
+            curr = curr.getParent();
+        }
 
-		while(curr != null ) {
-			nodes.add(curr);
-			curr = curr.getParent();
-		}
+        Collections.reverse(nodes);
 
-		Collections.reverse(nodes);
-
-		for( SearchNode n : nodes ) {
-			//System.out.println(n.getAction() + " -> " + n.getState());
-			System.out.println(n.getPathCosts() + " -> " + n.getState());
-		}
-	}
-
-
+        for( SearchNode n : nodes ) {
+            //System.out.println(n.getAction() + " -> " + n.getState());
+            System.out.println(n.getPathCost() + " -> " + n.getState());
+        }
+    }
 }

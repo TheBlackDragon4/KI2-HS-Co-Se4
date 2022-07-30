@@ -1,9 +1,10 @@
-package uebung03.untyped;
+package uebung03.untyped.solution;
 
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import uebung03.untyped.Problem;
+import uebung03.untyped.SearchNode;
+import uebung03.untyped.State;
+
+import java.util.*;
 import java.util.function.Function;
 
 public class SearchAlgorithms {
@@ -109,8 +110,13 @@ public class SearchAlgorithms {
     public static SearchNode iterativeDFS(Problem prob) {
 
         // TODO: implement
-
-
+        for( int l = 0; l < 1000; l++ ) {
+            System.out.println("\nStarting depth-limited DFS with limit " + l);
+            SearchNode solution = depthFirstSearch(prob, l);
+            if( solution != null ) {
+                return solution;
+            }
+        }
 
         return null;
     }
@@ -118,6 +124,44 @@ public class SearchAlgorithms {
     public static SearchNode bestFirstSearch(Problem prob, Function<SearchNode, Double> f) {
 
         // TODO: Implement
+        HashMap<State, SearchNode> explored = new HashMap<>();
+        PriorityQueue<SearchNode> frontier = new PriorityQueue<SearchNode>(
+                (o1, o2) -> (int)Math.round(f.apply(o1) - f.apply(o2)));
+
+        SearchNode start = new SearchNode(null, prob.getInitialState(), null, 0);
+
+        if (prob.isGoalState(start.getState())) {
+            return start;
+        }
+
+        frontier.add(start);
+        explored.put(start.getState(), start);
+
+        while (!frontier.isEmpty()) {
+            for (SearchNode n : frontier ) {
+                System.out.println("* " + n.getState() + ": f(n)=" + f.apply(n));
+            }
+            SearchNode node = frontier.remove();
+            System.out.println("Expand node: " + node);
+
+            if (prob.isGoalState(node.getState())) {
+                return node;
+            }
+
+            for (SearchNode child : expand(node)) {
+                State state = child.getState();
+
+                if (!explored.containsKey(state) || child.getPathCost() < explored.get(state).getPathCost()) {
+                    if(!explored.containsKey(state)) {
+                        System.out.println("Path to " + state + " (new) with cost: " + child.getPathCost());
+                    } else {
+                        System.out.println("Path to " + state + " (better)  with cost: " + child.getPathCost());
+                    }
+                    explored.put(state, child);
+                    frontier.add(child);
+                }
+            }
+        }
 
         return null;
     }
@@ -137,4 +181,12 @@ public class SearchAlgorithms {
 
         return list;
     }
+
+    protected static int getDepth(SearchNode node) {
+        if( node.getParent() == null ) {
+            return 0;
+        }
+        return getDepth(node.getParent()) + 1;
+    }
+
 }

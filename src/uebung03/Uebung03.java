@@ -14,14 +14,22 @@ public class Uebung03 {
 
         //GermanyRouteProblem prob = new GermanyRouteProblem("Aachen", "Leipzig");
         //GermanyRouteProblem prob = new GermanyRouteProblem("Hamburg", "München");
-        GermanyRouteProblem prob = new GermanyRouteProblem("Stuttgart", "Leipzig");
+        //GermanyRouteProblem prob = new GermanyRouteProblem("Stuttgart", "Leipzig");
+        GermanyRouteProblem prob = new GermanyRouteProblem("Berlin", "Freiburg");
 
-        SearchNode solution = SearchAlgorithms.breadthFirstSearch(prob, true);
+        //SearchNode solution = SearchAlgorithms.breadthFirstSearch(prob, true);
         //SearchNode solution = SearchAlgorithms.depthFirstSearch(prob);
         //SearchNode solution = SearchAlgorithms.depthFirstSearch(prob, 4);
         //SearchNode solution = SearchAlgorithms.iterativeDFS(prob);
 
+        // Uniform Cost Search
         //SearchNode solution = SearchAlgorithms.bestFirstSearch(prob, (node) -> ??? ); // TODO
+
+        // Greedy Best-First Search
+        //SearchNode solution = SearchAlgorithms.bestFirstSearch(prob, (node) -> prob.getDistance(node.getState().toString(), "Freiburg"));
+
+        // A* Search
+        SearchNode solution = SearchAlgorithms.bestFirstSearch(prob, (node) -> node.getPathCost() + prob.getDistance(node.getState().toString(), "Freiburg"));
 
         printSolution(solution);
     }

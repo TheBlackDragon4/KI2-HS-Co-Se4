@@ -1,10 +1,8 @@
-package uebung03.untyped;
+package uebung02.untyped;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.function.Function;
 
 public class SearchAlgorithms {
 
@@ -71,54 +69,6 @@ public class SearchAlgorithms {
             }
         }
         System.out.println("No solution found");
-        return null;
-    }
-
-    public static SearchNode depthFirstSearch(Problem prob, int limit) {
-
-        // TODO: implement
-
-        List<SearchNode> frontier = new ArrayList<>();
-
-        SearchNode start = new SearchNode(null, prob.getInitialState(), null, 0);
-
-        if(prob.isGoalState(start.getState())) {
-            return start;
-        }
-
-        frontier.add(start);
-        while (!frontier.isEmpty()) {
-            SearchNode node = frontier.remove(frontier.size() - 1);
-            System.out.println("Current node: " + node);
-            if(prob.isGoalState(node.getState())){
-                return node;
-            }
-
-            for (SearchNode child : expand(node)){
-                State state = child.getState();
-                if (!node.contains(state)) {
-                    frontier.add(child);
-                }
-            }
-        }
-
-        System.out.println("No solution found");
-        return null;
-    }
-
-    public static SearchNode iterativeDFS(Problem prob) {
-
-        // TODO: implement
-
-
-
-        return null;
-    }
-
-    public static SearchNode bestFirstSearch(Problem prob, Function<SearchNode, Double> f) {
-
-        // TODO: Implement
-
         return null;
     }
 
