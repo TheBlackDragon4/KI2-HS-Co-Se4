@@ -1,7 +1,8 @@
-package ki2.untyped.route;
+package uebung03.untyped.route;
 
-import ki2.untyped.Problem;
-import ki2.untyped.State;
+import uebung03.untyped.Problem;
+import uebung03.untyped.State;
+import uebung03.untyped.solution.DistanceUtil;
 
 import java.util.*;
 
@@ -178,6 +179,9 @@ public class GermanyRouteProblem implements Problem {
         double dist = getCost(city1, city2, city2);
         if (Double.isInfinite(dist)) {
             // TODO: Hier Heuristikfunktion anwenden
+            Coordinate coord1 = cityCoords.get(city1);
+            Coordinate coord2 = cityCoords.get(city2);
+            return DistanceUtil.calculateDistanceInKilometer(coord1.lat, coord1.lon, coord2.lat, coord2.lon);
         }
         return dist;
     }

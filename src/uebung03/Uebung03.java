@@ -1,8 +1,9 @@
-package ki2;
+package uebung03;
 
-import ki2.untyped.SearchAlgorithms;
-import ki2.untyped.SearchNode;
-import ki2.untyped.route.GermanyRouteProblem;
+import uebung03.untyped.solution.DistanceUtil;
+import uebung03.untyped.solution.SearchAlgorithms;
+import uebung03.untyped.SearchNode;
+import uebung03.untyped.route.GermanyRouteProblem;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,12 +17,21 @@ public class Uebung03 {
         //GermanyRouteProblem prob = new GermanyRouteProblem("Hamburg", "München");
         GermanyRouteProblem prob = new GermanyRouteProblem("Stuttgart", "Leipzig");
 
-        SearchNode solution = SearchAlgorithms.breadthFirstSearch(prob, true);
+        //SearchNode solution = SearchAlgorithms.breadthFirstSearch(prob, true);
         //SearchNode solution = SearchAlgorithms.depthFirstSearch(prob);
         //SearchNode solution = SearchAlgorithms.depthFirstSearch(prob, 4);
         //SearchNode solution = SearchAlgorithms.iterativeDFS(prob);
 
-        //SearchNode solution = SearchAlgorithms.bestFirstSearch(prob, (node) -> ??? ); // TODO
+        // Uniform Cost Search
+        //SearchNode solution = SearchAlgorithms.bestFirstSearch(prob, (node) -> node.getPathCost()); // TODO
+
+        // Greedy Best-First Search
+        SearchNode solution = SearchAlgorithms.bestFirstSearch(prob,
+                (node) -> prob.getDistance(node.getState().toString(), "Freiburg"));
+
+        // A* Search
+        //SearchNode solution = SearchAlgorithms.bestFirstSearch(prob,
+        //        (node) -> node.getPathCost() + prob.getDistance(node.getState().toString(), "Freiburg"));
 
         printSolution(solution);
     }

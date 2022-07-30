@@ -1,4 +1,4 @@
-package ki2.untyped;
+package uebung03.untyped;
 
 import java.util.ArrayList;
 import java.util.HashSet;
