@@ -6,7 +6,7 @@ import uebung09.adversarialsearch.viergewinnt.VierGewinnt;
  * Main class for launching a game.
  *
  * @author Florian Mittga
- */
+ */ 
 public class Uebung09 {
 
     public static int state_counter = 0;
